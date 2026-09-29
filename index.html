@@ -1,1 +1,284 @@
 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CocinaNova | Productos para tu cocina</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      color: #222;
+    }
+
+    header {
+      background: #111;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 32px;
+    }
+
+    header p {
+      margin: 7px 0 0;
+    }
+
+    .hero {
+      background: white;
+      text-align: center;
+      padding: 35px 15px;
+    }
+
+    .hero h2 {
+      margin: 0 0 10px;
+      font-size: 28px;
+    }
+
+    .hero p {
+      color: #666;
+    }
+
+    .productos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      padding: 20px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .producto {
+      background: white;
+      border-radius: 12px;
+      padding: 12px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+    }
+
+    .producto img {
+      width: 100%;
+      height: 180px;
+      object-fit: contain;
+      border-radius: 10px;
+      background: #fafafa;
+    }
+
+    .producto h3 {
+      font-size: 18px;
+      margin: 10px 0 5px;
+    }
+
+    .precio {
+      font-size: 22px;
+      font-weight: bold;
+      margin: 8px 0;
+    }
+
+    .stock {
+      color: #555;
+      font-size: 14px;
+    }
+
+    button {
+      width: 100%;
+      border: 0;
+      border-radius: 8px;
+      padding: 12px;
+      margin-top: 10px;
+      background: #111;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .carrito {
+      background: white;
+      margin: 20px;
+      padding: 20px;
+      border-radius: 12px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+    }
+
+    .whatsapp {
+      background: #25D366;
+    }
+
+    footer {
+      background: #111;
+      color: white;
+      text-align: center;
+      padding: 25px;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>🍳 CocinaNova</h1>
+  <p>Productos para hacer tu cocina más fácil</p>
+</header>
+
+<section class="hero">
+  <h2>Productos para tu cocina</h2>
+  <p>Calidad, buenos precios y productos prácticos para el hogar.</p>
+</section>
+
+<section class="productos">
+
+  <div class="producto">
+    <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=600&q=80">
+
+    <h3>Organizador de Cocina</h3>
+
+    <p>Práctico organizador para mantener tu cocina ordenada.</p>
+
+    <div class="precio">$250 MXN</div>
+
+    <div class="stock">Stock: 20 unidades</div>
+
+    <button onclick="agregar('Organizador de Cocina',250)">
+      Agregar al carrito
+    </button>
+  </div>
+
+
+  <div class="producto">
+    <img src="https://images.unsplash.com/photo-1585515320310-259814833e62?auto=format&fit=crop&w=600&q=80">
+
+    <h3>Utensilios de Cocina</h3>
+
+    <p>Juego práctico para cocinar todos los días.</p>
+
+    <div class="precio">$180 MXN</div>
+
+    <div class="stock">Stock: 25 unidades</div>
+
+    <button onclick="agregar('Utensilios de Cocina',180)">
+      Agregar al carrito
+    </button>
+  </div>
+
+
+  <div class="producto">
+    <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=600&q=80">
+
+    <h3>Accesorios de Cocina</h3>
+
+    <p>Accesorios útiles para preparar tus alimentos.</p>
+
+    <div class="precio">$150 MXN</div>
+
+    <div class="stock">Stock: 30 unidades</div>
+
+    <button onclick="agregar('Accesorios de Cocina',150)">
+      Agregar al carrito
+    </button>
+  </div>
+
+</section>
+
+
+<section class="carrito">
+
+  <h2>🛒 Mi carrito</h2>
+
+  <div id="lista">
+    No hay productos todavía.
+  </div>
+
+  <h3>
+    Total: $<span id="total">0</span> MXN
+  </h3>
+
+  <button class="whatsapp" onclick="pedidoWhatsApp()">
+    Comprar por WhatsApp
+  </button>
+
+</section>
+
+
+<footer>
+
+  <p>© 2026 CocinaNova</p>
+
+  <p>Productos de cocina a buenos precios</p>
+
+</footer>
+
+
+<script>
+
+  let carrito = [];
+  let total = 0;
+
+  function agregar(nombre, precio) {
+
+    carrito.push({
+      nombre: nombre,
+      precio: precio
+    });
+
+    total += precio;
+
+    document.getElementById("lista").innerHTML =
+      carrito
+      .map(p => "• " + p.nombre + " - $" + p.precio + " MXN")
+      .join("<br>");
+
+    document.getElementById("total").textContent = total;
+  }
+
+
+  function pedidoWhatsApp() {
+
+    if (carrito.length === 0) {
+
+      alert("Agrega un producto al carrito primero.");
+
+      return;
+    }
+
+    let mensaje =
+      "Hola, quiero comprar:%0A%0A";
+
+    carrito.forEach(p => {
+
+      mensaje +=
+        "• " +
+        p.nombre +
+        " - $" +
+        p.precio +
+        " MXN%0A";
+
+    });
+
+    mensaje +=
+      "%0ATotal: $" +
+      total +
+      " MXN";
+
+    window.open(
+      "https://wa.me/525516490617?text=" + mensaje,
+      "_blank"
+    );
+  }
+
+</script>
+
+</body>
+</html>
