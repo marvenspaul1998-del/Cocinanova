@@ -3,58 +3,75 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CocinaNova | Productos de Cocina</title>
+
+<title>CocinaNova | Tienda de Cocina</title>
 
 <style>
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+}
+
 body{
   margin:0;
   font-family:Arial,sans-serif;
-  background:#f7f7f7;
+  background:#f5f5f5;
   color:#222;
 }
+
 header{
   background:#111;
   color:white;
-  padding:18px 5%;
+  padding:16px 5%;
   display:flex;
   justify-content:space-between;
   align-items:center;
   position:sticky;
   top:0;
-  z-index:10;
+  z-index:100;
 }
+
 .logo{
-  font-size:25px;
+  font-size:24px;
   font-weight:bold;
 }
-.cart{
+
+.cart-btn{
   background:#ff6b00;
-  border:0;
   color:white;
+  border:0;
   padding:10px 15px;
   border-radius:8px;
-  font-size:16px;
   cursor:pointer;
+  font-size:15px;
 }
+
 .hero{
   background:linear-gradient(135deg,#ff6b00,#ff9f43);
   color:white;
-  padding:45px 20px;
   text-align:center;
+  padding:45px 20px;
 }
-.hero h1{font-size:38px;margin:5px 0}
-.hero p{font-size:18px}
+
+.hero h1{
+  margin:0 0 10px;
+  font-size:38px;
+}
+
+.hero p{
+  font-size:18px;
+}
+
 .search{
+  display:block;
   width:90%;
   max-width:600px;
   margin:25px auto;
-  display:block;
   padding:15px;
   border:1px solid #ddd;
   border-radius:10px;
   font-size:16px;
 }
+
 .products{
   width:92%;
   max-width:1200px;
@@ -63,53 +80,61 @@ header{
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
   gap:20px;
 }
+
 .card{
   background:white;
   border-radius:15px;
   overflow:hidden;
-  box-shadow:0 3px 12px rgba(0,0,0,.1);
-  padding-bottom:18px;
+  box-shadow:0 3px 12px rgba(0,0,0,.12);
 }
-.product-image{
-  height:190px;
+
+.photo{
+  width:100%;
+  height:210px;
+  object-fit:cover;
   background:#eee;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:75px;
 }
-.info{padding:15px}
+
+.info{
+  padding:15px;
+}
+
 .info h2{
   font-size:19px;
-  margin:5px 0 10px;
+  margin:0 0 10px;
 }
+
 .description{
   color:#666;
   font-size:14px;
-  min-height:40px;
+  min-height:42px;
 }
+
 .price{
   color:#e85d04;
-  font-size:24px;
+  font-size:25px;
   font-weight:bold;
-  margin:12px 0 5px;
+  margin-top:12px;
 }
+
 .stock{
-  font-size:14px;
   color:#198754;
+  font-size:14px;
+  margin-top:5px;
 }
+
 .buy{
   width:100%;
+  margin-top:12px;
+  padding:12px;
+  border:0;
+  border-radius:8px;
   background:#ff6b00;
   color:white;
-  border:0;
-  padding:12px;
-  border-radius:8px;
-  cursor:pointer;
   font-size:16px;
-  margin-top:10px;
+  cursor:pointer;
 }
-.buy:hover,.cart:hover{opacity:.9}
+
 footer{
   background:#111;
   color:white;
@@ -117,6 +142,7 @@ footer{
   padding:30px 15px;
   margin-top:40px;
 }
+
 .whatsapp{
   display:inline-block;
   background:#25D366;
@@ -124,32 +150,38 @@ footer{
   text-decoration:none;
   padding:13px 20px;
   border-radius:8px;
-  margin-top:10px;
 }
+
 .modal{
   display:none;
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.6);
-  z-index:20;
+  background:rgba(0,0,0,.65);
+  z-index:200;
 }
+
 .modal-content{
   background:white;
   width:92%;
   max-width:500px;
-  margin:8% auto;
+  margin:7% auto;
   padding:25px;
   border-radius:15px;
+  max-height:85vh;
+  overflow:auto;
 }
+
 .close{
   float:right;
-  font-size:25px;
+  font-size:28px;
   cursor:pointer;
 }
+
 .cart-item{
   border-bottom:1px solid #ddd;
-  padding:10px 0;
+  padding:12px 0;
 }
+
 .checkout{
   width:100%;
   background:#25D366;
@@ -159,7 +191,6 @@ footer{
   border-radius:8px;
   font-size:17px;
   cursor:pointer;
-  margin-top:15px;
 }
 </style>
 </head>
@@ -167,123 +198,177 @@ footer{
 <body>
 
 <header>
-  <div class="logo">🍳 CocinaNova</div>
-  <button class="cart" onclick="openCart()">🛒 Carrito (<span id="cartCount">0</span>)</button>
+
+<div class="logo">🍳 CocinaNova</div>
+
+<button class="cart-btn" onclick="openCart()">
+🛒 Carrito (<span id="cartCount">0</span>)
+</button>
+
 </header>
 
 <section class="hero">
-  <h1>Productos para tu Cocina</h1>
-  <p>Calidad, practicidad y buenos precios en México 🇲🇽</p>
+
+<h1>CocinaNova</h1>
+
+<p>Productos prácticos para tu cocina 🇲🇽</p>
+
 </section>
 
 <input
-  class="search"
-  id="search"
-  type="text"
-  placeholder="🔎 Buscar producto..."
-  onkeyup="searchProducts()"
+class="search"
+id="search"
+placeholder="🔎 Buscar producto..."
+onkeyup="searchProducts()"
 >
 
 <div class="products" id="products"></div>
 
 <footer>
-  <h2>🍳 CocinaNova</h2>
-  <p>Productos prácticos para tu hogar.</p>
-  <p>¿Quieres comprar? Escríbenos por WhatsApp.</p>
-  <a class="whatsapp" href="https://wa.me/525516490617" target="_blank">
-    💬 WhatsApp: 55 1649 0617
-  </a>
-  <p style="margin-top:25px;">© 2026 CocinaNova</p>
+
+<h2>🍳 CocinaNova</h2>
+
+<p>Productos para hacer tu cocina más práctica.</p>
+
+<p>Compra fácilmente por WhatsApp.</p>
+
+<a
+class="whatsapp"
+href="https://wa.me/525516490617"
+target="_blank"
+>
+💬 WhatsApp 55 1649 0617
+</a>
+
+<p>© 2026 CocinaNova</p>
+
 </footer>
 
 <div class="modal" id="cartModal">
-  <div class="modal-content">
-    <span class="close" onclick="closeCart()">×</span>
-    <h2>🛒 Mi Carrito</h2>
-    <div id="cartItems"></div>
-    <h3>Total: $<span id="cartTotal">0</span> MXN</h3>
-    <button class="checkout" onclick="checkoutWhatsApp()">
-      💬 Comprar por WhatsApp
-    </button>
-  </div>
+
+<div class="modal-content">
+
+<span class="close" onclick="closeCart()">×</span>
+
+<h2>🛒 Mi Carrito</h2>
+
+<div id="cartItems"></div>
+
+<h3>
+Total: $<span id="cartTotal">0</span> MXN
+</h3>
+
+<button class="checkout" onclick="checkoutWhatsApp()">
+💬 Comprar por WhatsApp
+</button>
+
+</div>
+
 </div>
 
 <script>
 
+/*
+=================================================
+PRODUCTOS
+=================================================
+
+AQUÍ PUEDES CAMBIAR:
+
+name  = nombre
+price = precio
+stock = cantidad disponible
+image = foto
+
+=================================================
+*/
+
 const products = [
+
 {
 name:"Set 12 Utensilios de Silicona",
 price:199,
 stock:20,
-emoji:"🥄",
-description:"Set práctico de utensilios de silicona para cocinar."
+image:"https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=800&q=80",
+description:"Set práctico de utensilios para cocinar."
 },
+
 {
 name:"Set 34 Utensilios de Cocina",
 price:299,
 stock:20,
-emoji:"🍴",
-description:"Juego completo para preparar diferentes comidas."
+image:"https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=800&q=80",
+description:"Juego completo para preparar tus comidas."
 },
+
 {
 name:"Rallador y Cortador 8 Cuchillas",
 price:199,
 stock:20,
-emoji:"🥕",
-description:"Corta, ralla y prepara verduras fácilmente."
+image:"https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?auto=format&fit=crop&w=800&q=80",
+description:"Corta y prepara verduras fácilmente."
 },
+
 {
 name:"Escurridor de Trastes 2 Niveles",
 price:299,
 stock:20,
-emoji:"🍽️",
-description:"Organiza platos, vasos y utensilios de cocina."
+image:"https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=800&q=80",
+description:"Organiza platos y utensilios de cocina."
 },
+
 {
 name:"Juego de Sartenes Antiadherentes",
 price:499,
 stock:20,
-emoji:"🍳",
-description:"Sartenes prácticas con superficie antiadherente."
+image:"https://images.unsplash.com/photo-1584990347449-ae1c5c1b1b5c?auto=format&fit=crop&w=800&q=80",
+description:"Sartenes prácticas para cocinar diariamente."
 },
+
 {
 name:"Báscula Digital de Cocina",
 price:249,
 stock:20,
-emoji:"⚖️",
-description:"Pesa ingredientes con precisión para tus recetas."
+image:"https://images.unsplash.com/photo-1556911220-ef412ae179a9?auto=format&fit=crop&w=800&q=80",
+description:"Pesa ingredientes de manera práctica."
 },
+
 {
 name:"Tijeras de Cocina Multiusos",
 price:129,
 stock:20,
-emoji:"✂️",
-description:"Tijeras resistentes para diferentes tareas de cocina."
+image:"https://images.unsplash.com/photo-1593618998160-e34014e67546?auto=format&fit=crop&w=800&q=80",
+description:"Tijeras multiusos para tu cocina."
 },
+
 {
 name:"Set de Utensilios de Bambú",
 price:149,
 stock:20,
-emoji:"🥢",
-description:"Utensilios de bambú para cocinar y servir."
+image:"https://images.unsplash.com/photo-1556911220-c9f7f9c2a7a5?auto=format&fit=crop&w=800&q=80",
+description:"Utensilios para cocinar y servir."
 },
+
 {
 name:"Mezcladora para Fregadero",
 price:249,
 stock:20,
-emoji:"🚰",
-description:"Accesorio práctico para mejorar tu fregadero."
+image:"https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=800&q=80",
+description:"Accesorio práctico para tu fregadero."
 },
+
 {
 name:"Grifo de Cocina Extraíble",
 price:299,
 stock:20,
-emoji:"🚿",
-description:"Grifo moderno con manguera extraíble."
+image:"https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80",
+description:"Grifo moderno para cocina."
 }
+
 ];
 
 let cart=[];
+
 
 function showProducts(list=products){
 
@@ -297,9 +382,12 @@ container.innerHTML+=`
 
 <div class="card">
 
-<div class="product-image">
-${p.emoji}
-</div>
+<img
+class="photo"
+src="${p.image}"
+alt="${p.name}"
+onerror="this.style.display='none'"
+>
 
 <div class="info">
 
@@ -314,10 +402,13 @@ $${p.price} MXN
 </div>
 
 <div class="stock">
-Stock disponible: ${p.stock}
+📦 Stock disponible: ${p.stock}
 </div>
 
-<button class="buy" onclick="addToCart(${index})">
+<button
+class="buy"
+onclick="addToCart(${index})"
+>
 🛒 Agregar al carrito
 </button>
 
@@ -331,11 +422,22 @@ Stock disponible: ${p.stock}
 
 }
 
+
 function addToCart(index){
 
 const product=products[index];
 
-const existing=cart.find(item=>item.name===product.name);
+if(product.stock<=0){
+
+alert("Producto agotado.");
+
+return;
+
+}
+
+const existing=cart.find(
+item=>item.name===product.name
+);
 
 if(existing){
 
@@ -344,9 +446,13 @@ existing.quantity++;
 }else{
 
 cart.push({
+
 name:product.name,
+
 price:product.price,
+
 quantity:1
+
 });
 
 }
@@ -357,14 +463,17 @@ alert("Producto agregado al carrito ✅");
 
 }
 
+
 function updateCart(){
 
 let count=0;
+
 let total=0;
 
 cart.forEach(item=>{
 
 count+=item.quantity;
+
 total+=item.price*item.quantity;
 
 });
@@ -409,6 +518,7 @@ document.getElementById("cartItems").innerHTML=html;
 
 }
 
+
 function removeItem(index){
 
 cart.splice(index,1);
@@ -416,6 +526,7 @@ cart.splice(index,1);
 updateCart();
 
 }
+
 
 function openCart(){
 
@@ -425,11 +536,13 @@ updateCart();
 
 }
 
+
 function closeCart(){
 
 document.getElementById("cartModal").style.display="none";
 
 }
+
 
 function checkoutWhatsApp(){
 
@@ -441,7 +554,8 @@ return;
 
 }
 
-let message="Hola CocinaNova 👋%0A%0AQuiero comprar:%0A";
+let message=
+"Hola CocinaNova 👋%0A%0AQuiero comprar:%0A";
 
 let total=0;
 
@@ -451,13 +565,16 @@ let subtotal=item.price*item.quantity;
 
 total+=subtotal;
 
-message+=`%0A• ${item.name} x${item.quantity} = $${subtotal} MXN`;
+message+=
+`%0A• ${item.name} x${item.quantity} = $${subtotal} MXN`;
 
 });
 
-message+=`%0A%0ATotal: $${total} MXN`;
+message+=
+`%0A%0ATotal: $${total} MXN`;
 
-message+="%0A%0A¿Me pueden confirmar disponibilidad y entrega?";
+message+=
+"%0A%0A¿Me pueden confirmar disponibilidad y entrega?";
 
 window.open(
 "https://wa.me/525516490617?text="+message,
@@ -466,20 +583,23 @@ window.open(
 
 }
 
+
 function searchProducts(){
 
-const text=document
-.getElementById("search")
+const text=
+document.getElementById("search")
 .value
 .toLowerCase();
 
-const filtered=products.filter(p=>
+const filtered=
+products.filter(p=>
 p.name.toLowerCase().includes(text)
 );
 
 showProducts(filtered);
 
 }
+
 
 showProducts();
 
