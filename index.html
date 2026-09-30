@@ -7,10 +7,27 @@
 <title>CocinaNova | Tienda de Cocina</title>
 
 <style>
-*{
+*{```css
+.boton-carrito {
+  background-color: #198754;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
   box-sizing:border-box;
 }
 
+```html
+<script>
+  function agregarAlCarrito() {
+    alert("Producto agregado al carrito");
+  }
+</script>
 body{
   margin:0;
   font-family:Arial,sans-serif;
@@ -364,7 +381,11 @@ stock:20,
 image:"https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80",
 description:"Grifo moderno para cocina."
 }
-
+```html
+<button class="boton-carrito" onclick="agregarAlCarrito()">
+  Agregar al carrito
+</button>
+```
 ];
 
 let cart=[];
@@ -605,5 +626,12 @@ showProducts();
 
 </script>
 
+```html
+<script>
+  function agregarAlCarrito() {
+    alert("Producto agregado al carrito");
+  }
+</script>
+```
 </body>
 </html>
